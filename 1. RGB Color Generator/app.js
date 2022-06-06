@@ -2,6 +2,7 @@ window.onload = () => {
 	main();
 };
 
+let div = null;
 
 function main() {
 	const root = document.getElementById('root');
@@ -44,6 +45,11 @@ function main() {
 	copyBtn.addEventListener('click', () => {
 		const value = document.getElementById("output").value;
 		navigator.clipboard.writeText(`${value}`)
+		if (div !== null) {
+			div.remove();
+			div = null;
+		}
+		generateToastMessage(`${value} copied !!!`)
 	});
 
 }
@@ -62,6 +68,24 @@ function generateRGBColor() {
 	inputArea.value = `#${redhex}${greenhex}${bluehex}`;
 
 	return `rgb(${red}, ${green}, ${blue})`;
+}
+
+const generateToastMessage = (message) => {
+	div = document.createElement('div');
+	div.classList.add('toast-message')
+	div.classList.add('toast-message-slide-in')
+	div.innerText = message;
+	div.addEventListener("click", () => {
+		div.classList.remove('toast-message-slide-in');
+		div.classList.add('toast-message-slide-out');
+		div.addEventListener('animationend', () => {
+			div.remove();
+			div = null;
+		})
+	})
+
+	document.body.appendChild(div);
+
 }
 
 
