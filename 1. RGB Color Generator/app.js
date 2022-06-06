@@ -43,7 +43,8 @@ function main() {
 	})
 
 	copyBtn.addEventListener('click', () => {
-		const value = document.getElementById("output").value;
+		let value = document.getElementById("output").value;
+		value = `#${value}`;
 		navigator.clipboard.writeText(`${value}`)
 		if (div !== null) {
 			div.remove();
@@ -59,7 +60,9 @@ function main() {
 	});
 
 	document.getElementById("output").addEventListener('keyup', (e) => {
-		const color = e.target.value;
+		let color = e.target.value;
+		output.value = color.toUpperCase();
+		color = `#${color}`;
 		if (color && isValidHex(color)) {
 			root.style.backgroundColor = color;
 		}
@@ -77,7 +80,7 @@ function generateRGBColor() {
 	let bluehex = blue.toString(16);
 
 	let inputArea = document.getElementById("output");
-	inputArea.value = `#${redhex}${greenhex}${bluehex}`;
+	inputArea.value = `${redhex}${greenhex}${bluehex}`;
 
 	return `rgb(${red}, ${green}, ${blue})`;
 }
