@@ -49,9 +49,21 @@ function main() {
 			div.remove();
 			div = null;
 		}
-		generateToastMessage(`${value} copied !!!`)
+
+		if (isValidHex(value)) {
+			generateToastMessage(`${value} copied !!!`)
+		}
+		else {
+			alert("Not a Valid Color Code to Copy")
+		}
 	});
 
+	document.getElementById("output").addEventListener('keyup', (e) => {
+		const color = e.target.value;
+		if (color && isValidHex(color)) {
+			root.style.backgroundColor = color;
+		}
+	})
 }
 
 function generateRGBColor() {
@@ -88,4 +100,18 @@ const generateToastMessage = (message) => {
 
 }
 
+/**
+ * 
+ * @param {string} color 
+ */
+const isValidHex = (color) => {
+	if (color.length !== 7) {
+		return false;
+	}
+	if (color[0] !== "#") {
+		return false;
+	}
+	color = color.substring(1);
+	return /^[0-9A-Fa-f]{6}/i.test(color);
+}
 
