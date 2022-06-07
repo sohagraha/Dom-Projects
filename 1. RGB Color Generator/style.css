@@ -49,6 +49,15 @@ body {
 	text-transform: uppercase;
 }
 
+.output-rgb {
+	height: 40px;
+	padding: 10px 15px;
+	background-color: #fff;
+	border-radius: 15px;
+	margin-left: 1rem;
+	text-transform: uppercase;
+}
+
 #output:focus {
 	outline: none;
 	border: none;
@@ -75,6 +84,15 @@ button:hover {
 }
 
 #copy_hex {
+	background-color: azure;
+	padding: 6px 12px;
+	color: black;
+	text-transform: capitalize;
+	border-radius: 18px;
+	border: none;
+}
+
+.copy-rgb {
 	background-color: azure;
 	padding: 6px 12px;
 	color: black;
