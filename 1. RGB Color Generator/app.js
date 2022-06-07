@@ -65,6 +65,7 @@ function main() {
 
 	copyBtn2.addEventListener('click', () => {
 		let value = txtcolorrgb.value;
+		navigator.clipboard.writeText(`${value}`)
 		if (div !== null) {
 			div.remove();
 			div = null;
