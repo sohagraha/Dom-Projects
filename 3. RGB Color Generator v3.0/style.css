@@ -47,6 +47,11 @@ body {
 	cursor: pointer;
 }
 
+.section-header-action-group {
+	display: flex;
+	gap: 1rem;
+}
+
 .section-title {
 	font-size: 18px;
 	font-weight: 600;
@@ -222,6 +227,14 @@ label {
 
 /* color boxes */
 .preset-colors {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	justify-content: flex-start;
+	padding: 1rem 0;
+}
+
+.custom-colors {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 1rem;

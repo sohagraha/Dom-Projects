@@ -25,6 +25,7 @@ let ColorSliderBlueLabel = document.getElementById('color-slider-blue-label');
 let colorSliderRed = document.getElementById("color-slider-red")
 let colorSliderGreen = document.getElementById("color-slider-green")
 let colorSliderBlue = document.getElementById("color-slider-blue")
+let saveToCustom = document.getElementById("save-to-custom")
 
 
 const rgbColor = {
@@ -60,6 +61,8 @@ let defaultPresetColors = [
 	'#ffcc80',
 ];
 
+let saveColor = [];
+
 // Event Listeners 
 colorModeHex.addEventListener("click", () => {
 	ColorModeCopy.hex = true
@@ -68,6 +71,10 @@ colorModeHex.addEventListener("click", () => {
 colorModeRgb.addEventListener("click", () => {
 	ColorModeCopy.hex = false
 	ColorModeCopy.rgb = true
+})
+saveToCustom.addEventListener('click', () => {
+	saveColor.push(`#${inputHex.value}`)
+	generateSaveColorBox(saveColor);
 })
 copyToClipboard.addEventListener("click", () => {
 	if (ColorModeCopy.hex) {
@@ -222,18 +229,77 @@ let sliderValueUpdate = (red, green, blue) => {
 let generateColorBox = (colors) => {
 	let color;
 	for (color of colors) {
-		const div = document.createElement('div')
-		div.classList.add('color-box')
-		div.style.backgroundColor = color;
-		div.setAttribute('data-color', color);
-		document.getElementById('preset-colors').appendChild(div);
-		div.addEventListener('click', () => {
-			hexToRgb(div.getAttribute('data-color').substring(1));
-			inputHex.value = div.getAttribute('data-color').substring(1);
-			inputRgb.value = div.style.backgroundColor;
-			colorDisplay.style.backgroundColor = div.style.backgroundColor;
+		let div2 = document.createElement('div')
+		div2.classList.add('color-box')
+		div2.style.backgroundColor = color;
+		div2.setAttribute('data-color', color);
+		document.getElementById('preset-colors').appendChild(div2);
+		div2.addEventListener('click', () => {
+			hexToRgb(div2.getAttribute('data-color').substring(1));
+			inputHex.value = div2.getAttribute('data-color').substring(1);
+			inputRgb.value = div2.style.backgroundColor;
+			colorDisplay.style.backgroundColor = div2.style.backgroundColor;
 			// play audio onClick 
 			copySound.volume = 0.05;
+
+			if (ColorModeCopy.hex) {
+				navigator.clipboard.writeText(`#${inputHex.value}`)
+				if (div !== null) {
+					div.remove();
+					div = null;
+				}
+				if (isValidHex(inputHex.value)) {
+					toastMeassage(`#${inputHex.value}`);
+				}
+			}
+			else {
+				navigator.clipboard.writeText(`${inputRgb.value}`)
+				if (div !== null) {
+					div.remove();
+					div = null;
+				}
+				toastMeassage(inputRgb.value);
+			}
+			copySound.play();
+		})
+	}
+}
+
+let generateSaveColorBox = (colors) => {
+	document.getElementById('custom-colors').innerHTML = "";
+	let color;
+	for (color of colors) {
+		let div3 = document.createElement('div')
+		div3.classList.add('color-box')
+		div3.style.backgroundColor = color;
+		div3.setAttribute('data-color', color);
+		document.getElementById('custom-colors').appendChild(div3);
+		div3.addEventListener('click', () => {
+			hexToRgb(div3.getAttribute('data-color').substring(1));
+			inputHex.value = div3.getAttribute('data-color').substring(1);
+			inputRgb.value = div3.style.backgroundColor;
+			colorDisplay.style.backgroundColor = div3.style.backgroundColor;
+			// play audio onClick 
+			copySound.volume = 0.05;
+
+			if (ColorModeCopy.hex) {
+				navigator.clipboard.writeText(`#${inputHex.value}`)
+				if (div !== null) {
+					div.remove();
+					div = null;
+				}
+				if (isValidHex(inputHex.value)) {
+					toastMeassage(`#${inputHex.value}`);
+				}
+			}
+			else {
+				navigator.clipboard.writeText(`${inputRgb.value}`)
+				if (div !== null) {
+					div.remove();
+					div = null;
+				}
+				toastMeassage(inputRgb.value);
+			}
 			copySound.play();
 		})
 	}
