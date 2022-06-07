@@ -47,7 +47,9 @@ copyToClipboard.addEventListener("click", () => {
 			div.remove();
 			div = null;
 		}
-		toastMeassage(`#${inputHex.value}`);
+		if (isValidHex(inputHex.value)) {
+			toastMeassage(`#${inputHex.value}`);
+		}
 	}
 	else {
 		navigator.clipboard.writeText(`${inputRgb.value}`)
@@ -81,6 +83,9 @@ colorSliderBlue.addEventListener('change', () => {
 
 // all function 
 let main = () => {
+	inputHex.maxLength = 6;
+
+
 	randColorBtn.addEventListener('click', () => {
 		rgbTxt = generateRGBColor();
 		colorDisplay.style.backgroundColor = rgbTxt;
@@ -127,13 +132,6 @@ let hexToRgb = (hexcolor) => {
 
 }
 
-const isValidHex = (color) => {
-	if (color.length !== 6) {
-		return false;
-	}
-	return /^[0-9A-Fa-f]{6}/i.test(color);
-}
-
 let rgbToHex = (red, green, blue) => {
 	let rgbToHexTxt = `${red}${green}${blue}`
 	inputHex.value = rgbToHexTxt;
@@ -155,6 +153,13 @@ let toastMeassage = (message) => {
 	})
 
 	document.body.appendChild(div);
+}
+
+const isValidHex = (color) => {
+	if (color.length !== 6) {
+		return false;
+	}
+	return /^[0-9A-Fa-f]{6}/i.test(color);
 }
 
 let labelUpdate = (red, green, blue) => {
