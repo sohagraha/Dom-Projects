@@ -264,7 +264,6 @@ label {
 
 .background-left-panel {
 	padding: 1rem;
-	width: 100%;
 }
 
 .background-image {
@@ -293,4 +292,13 @@ label {
 	border: none;
 	outline: none;
 	cursor: pointer;
+}
+
+.background-right-panel {
+	padding: 1rem;
+	width: 100%;
+}
+
+.select-group {
+	margin-bottom: 1rem;
 }

@@ -73,6 +73,13 @@ let bgFileInput = document.getElementById('bg-file-input');
 let bgPreview = document.getElementById('bg-preview');
 let bgFileDeleteBtn = document.getElementById('bg-file-delete-btn');
 bgFileDeleteBtn.style.display = 'none';
+let bgController = document.getElementById('bg-controller');
+bgController.style.display = 'none';
+
+let bgSize = document.getElementById('bg-size');
+let bgRepeat = document.getElementById('bg-repeat');
+let bgPosition = document.getElementById('bg-position');
+let bgAttachment = document.getElementById('bg-attachment');
 
 
 
@@ -154,6 +161,7 @@ bgFileInput.addEventListener('change', (event) => {
 	document.body.style.background = `url(${imgUrl})`
 	if (imgUrl) {
 		bgFileDeleteBtn.style.display = 'block';
+		bgController.style.display = 'block';
 	}
 })
 
@@ -161,8 +169,21 @@ bgFileDeleteBtn.addEventListener("click", () => {
 	bgFileDeleteBtn.style.display = 'none';
 	bgPreview.style.background = ``
 	document.body.style.background = ``
+	bgController.style.display = 'none';
 })
 
+bgSize.addEventListener('change', () => {
+	changeBackgroundPreferences();
+});
+bgRepeat.addEventListener('change', () => {
+	changeBackgroundPreferences();
+});
+bgPosition.addEventListener('change', () => {
+	changeBackgroundPreferences();
+});
+bgAttachment.addEventListener('change', () => {
+	changeBackgroundPreferences();
+});
 
 // all function 
 let main = () => {
@@ -358,5 +379,10 @@ let generateSaveColorBox = (colors) => {
 	}
 }
 
-
+const changeBackgroundPreferences = () => {
+	document.body.style.backgroundSize = bgSize.value;
+	document.body.style.backgroundRepeat = bgRepeat.value;
+	document.body.style.backgroundPosition = bgPosition.value;
+	document.body.style.backgroundAttachment = bgAttachment.value;
+}
 
