@@ -61,7 +61,7 @@ let defaultPresetColors = [
 	'#ffcc80',
 ];
 
-let saveColor = [];
+let saveColor = JSON.parse(localStorage.getItem('custom-colors'));
 
 // Event Listeners 
 colorModeHex.addEventListener("click", () => {
@@ -73,10 +73,23 @@ colorModeRgb.addEventListener("click", () => {
 	ColorModeCopy.rgb = true
 })
 saveToCustom.addEventListener('click', () => {
-	saveColor.push(`#${inputHex.value}`)
+	const color = `#${inputHex.value}`
+
+	if (saveColor.includes(color)) {
+		alert("Color Already Set on Custom Color List")
+		return
+	}
+	if (saveColor.length >= 24) {
+		saveColor.pop()
+	}
+	saveColor.unshift(`#${inputHex.value}`)
+	localStorage.setItem('custom-colors', JSON.stringify(saveColor));
 	generateSaveColorBox(saveColor);
 })
 copyToClipboard.addEventListener("click", () => {
+	if (saveColor === null) {
+		saveColor = [];
+	}
 	if (ColorModeCopy.hex) {
 		navigator.clipboard.writeText(`#${inputHex.value}`)
 		if (div !== null) {
@@ -121,7 +134,13 @@ colorSliderBlue.addEventListener('change', () => {
 let main = () => {
 	inputHex.maxLength = 6;
 	generateColorBox(defaultPresetColors);
-
+	if (saveColor == null) {
+		saveColor = [];
+		generateSaveColorBox(saveColor);
+	}
+	else {
+		generateSaveColorBox(saveColor);
+	}
 	randColorBtn.addEventListener('click', () => {
 		rgbTxt = generateRGBColor();
 		colorDisplay.style.backgroundColor = rgbTxt;
