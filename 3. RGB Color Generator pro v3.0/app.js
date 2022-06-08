@@ -29,6 +29,7 @@ let colorSliderRed = document.getElementById("color-slider-red")
 let colorSliderGreen = document.getElementById("color-slider-green")
 let colorSliderBlue = document.getElementById("color-slider-blue")
 let saveToCustom = document.getElementById("save-to-custom")
+let resetCustom = document.getElementById("reset-custom")
 
 
 const rgbColor = {
@@ -184,6 +185,12 @@ bgPosition.addEventListener('change', () => {
 bgAttachment.addEventListener('change', () => {
 	changeBackgroundPreferences();
 });
+
+resetCustom.addEventListener('click', () => {
+	localStorage.setItem('custom-colors', JSON.stringify([]));
+	saveColor = JSON.parse(localStorage.getItem('custom-colors'));
+	generateSaveColorBox(saveColor);
+})
 
 // all function 
 let main = () => {
