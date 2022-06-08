@@ -5,6 +5,9 @@ window.onload = () => {
 let rgbTxt;
 let div = null;
 let copySound = new Audio('./button-09a.wav');
+let file = "";
+let imgUrl = ""
+
 
 let randColorBtn = document.getElementById("generate-random-color");
 let colorDisplay = document.getElementById("color-display");
@@ -62,6 +65,16 @@ let defaultPresetColors = [
 ];
 
 let saveColor = JSON.parse(localStorage.getItem('custom-colors'));
+
+// Background Preference
+
+let bgFileInputBtn = document.getElementById("bg-file-input-btn");
+let bgFileInput = document.getElementById('bg-file-input');
+let bgPreview = document.getElementById('bg-preview');
+let bgFileDeleteBtn = document.getElementById('bg-file-delete-btn');
+bgFileDeleteBtn.style.display = 'none';
+
+
 
 // Event Listeners 
 colorModeHex.addEventListener("click", () => {
@@ -127,6 +140,27 @@ colorSliderGreen.addEventListener('change', () => {
 colorSliderBlue.addEventListener('change', () => {
 	rgbColor.blue = colorSliderBlue.value;
 	sliderChange();
+})
+
+
+bgFileInputBtn.addEventListener('click', () => {
+	bgFileInput.click();
+})
+
+bgFileInput.addEventListener('change', (event) => {
+	file = event.target.files[0];
+	imgUrl = URL.createObjectURL(file);
+	bgPreview.style.background = `url(${imgUrl})`
+	document.body.style.background = `url(${imgUrl})`
+	if (imgUrl) {
+		bgFileDeleteBtn.style.display = 'block';
+	}
+})
+
+bgFileDeleteBtn.addEventListener("click", () => {
+	bgFileDeleteBtn.style.display = 'none';
+	bgPreview.style.background = ``
+	document.body.style.background = ``
 })
 
 
