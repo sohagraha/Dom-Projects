@@ -1,11 +1,11 @@
+let count = 0;
+let incValue = document.getElementById('inc-value');
+let decValue = document.getElementById('dec-value');
+let incBtn = document.getElementById('inc-btn');
+let decBtn = document.getElementById('dec-btn');
 
+let counterTxt = document.getElementById('counterTxt');
 
-let resetBtn = document.getElementById('reset-btn');
-let submitBtn = document.getElementById('submit-btn');
-let resultBody = document.getElementById('result-body');
-let nameOutput = document.getElementById('name-output');
-resultBody.style.display = 'none';
-let myName = document.getElementById('my-name');
 
 window.onload = () => main();
 
@@ -13,17 +13,38 @@ let main = () => {
 
 }
 
-submitBtn.addEventListener('click', () => {
-    if (myName.value) {
-        nameOutput.innerText = myName.value;
-        resultBody.style.display = 'block';
-        document.getElementById('my-name').value = '';
+incValue.addEventListener('keyup', () => {
+    if (incValue.value > 100) {
+        incValue.value = 100;
     }
-    else {
-        alert('please provide a valid name')
+    if (incValue.value < 0) {
+        incValue.value = 0;
     }
 })
-resetBtn.addEventListener('click', () => {
-    document.getElementById('my-name').value = '';
-    resultBody.style.display = 'none';
+decValue.addEventListener('keyup', () => {
+    if (decValue.value > 100) {
+        decValue.value = 100;
+    }
+    if (decValue.value < 0) {
+        decValue.value = 0;
+    }
 })
+
+incBtn.addEventListener('click', () => {
+    count = parseInt(count) + parseInt(incValue.value);
+    if (count < 10) {
+        count = `0${count}`;
+    }
+    counterTxt.innerText = count;
+})
+decBtn.addEventListener('click', () => {
+    count = parseInt(count) - parseInt(decValue.value);
+    if (count < 0) {
+        count = 0;
+    }
+    if (count < 10) {
+        count = `0${count}`;
+    }
+    counterTxt.innerText = count;
+})
+

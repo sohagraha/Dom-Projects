@@ -14,19 +14,18 @@
     <div class="container">
         <div class="header">
             <h1 class="header-title">Fill the Form Below</h1>
-            <div>
-                <button class="reset-btn" id="reset-btn">Reset</button>
-                <button class="submit-btn" id="submit-btn">Submit</button>
-            </div>
+            <small>Negative Value Are not accepted</small>
         </div>
         <div class="divider"></div>
         <div class="form-body">
-            <b>What is your name?</b>
-            <br>
-            <input id="my-name" type="text">
+            <h1 id="counterTxt" class="counterTxt">00</h1>
         </div>
-        <p id="result-body">Hello <strong><span id="name-output">Sohag Raha</span></strong>, Welcome to our application.
-        </p>
+        <div class="footer">
+            <input id="inc-value" type="number" min="0" max="100" value="0">
+            <button class="inc-btn" id="inc-btn">Increment</button>
+            <button class="dec-btn" id="dec-btn">Decrement</button>
+            <input id="dec-value" type="number" min="0" max="100" value="0">
+        </div>
     </div>
     <script src="./app.js"></script>
 </body>

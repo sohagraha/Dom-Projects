@@ -24,11 +24,9 @@ body {
 }
 
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
+    text-align: center;
 }
+
 
 .header-title {
     font-size: 22px;
@@ -36,8 +34,8 @@ body {
     color: #222;
 }
 
-.reset-btn,
-.submit-btn {
+.inc-btn,
+.dec-btn {
     padding: 0.5rem 1rem;
     outline: none;
     border: none;
@@ -45,6 +43,7 @@ body {
     background-color: #000;
     color: #fff;
     cursor: pointer;
+    margin: 0 5px;
 }
 
 .divider {
@@ -54,6 +53,10 @@ body {
     background-color: #dddeee;
 }
 
+.footer {
+    display: flex;
+}
+
 .form-body {
     margin: 1.5rem 0;
     color: #555555;
@@ -61,7 +64,14 @@ body {
     line-height: 1.5;
 }
 
+.counterTxt {
+    font-size: 80px;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+}
+
 input {
-    width: 100%;
     padding: 6px;
+    width: 35%;
 }
