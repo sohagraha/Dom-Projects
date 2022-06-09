@@ -36,7 +36,8 @@ body {
     color: #222;
 }
 
-.new-quote-btn {
+.reset-btn,
+.submit-btn {
     padding: 0.5rem 1rem;
     outline: none;
     border: none;
@@ -53,9 +54,14 @@ body {
     background-color: #dddeee;
 }
 
-.quote-body {
-    margin-top: 1.5rem;
+.form-body {
+    margin: 1.5rem 0;
     color: #555555;
     font-size: 1rem;
     line-height: 1.5;
+}
+
+input {
+    width: 100%;
+    padding: 6px;
 }

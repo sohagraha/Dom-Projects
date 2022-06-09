@@ -13,14 +13,19 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1 class="header-title">Random Quote Generator</h1>
-            <button class="new-quote-btn" id="new-quote-btn">New Quote</button>
+            <h1 class="header-title">Fill the Form Below</h1>
+            <div>
+                <button class="reset-btn" id="reset-btn">Reset</button>
+                <button class="submit-btn" id="submit-btn">Submit</button>
+            </div>
         </div>
         <div class="divider"></div>
-        <p class="quote-body" id="quote-body">
-            Click the button above to find new and randomly generated quotes. This is a pretty simple application. I
-            will suggest please try yourself
-            before watching me to code that.
+        <div class="form-body">
+            <b>What is your name?</b>
+            <br>
+            <input id="my-name" type="text">
+        </div>
+        <p id="result-body">Hello <strong><span id="name-output">Sohag Raha</span></strong>, Welcome to our application.
         </p>
     </div>
     <script src="./app.js"></script>
