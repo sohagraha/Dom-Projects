@@ -149,31 +149,51 @@ let converterLeftKeys = [];
 let converterRightKeys = [];
 
 let categorySelect = document.getElementById('category-select');
+let leftInput = document.getElementById('left-inp');
+let rightInput = document.getElementById('right-inp');
 let leftSelect = document.getElementById('left-select');
 let rightSelect = document.getElementById('right-select');
+
+
+let converterName;
+let variant;
+let variantKey;
+let formulaTxt;
+
+let formulaTxtArea = document.getElementById('formula-text')
 
 
 categorySelect.addEventListener('change', () => {
     leftCategory();
     rightCategory(leftSelect.value);
+
+    formulaCal();
 })
 
 leftSelect.addEventListener('change', () => {
     rightCategory(leftSelect.value);
+
+    formulaCal()
+})
+
+rightSelect.addEventListener('change', () => {
+    formulaCal()
 })
 
 
 window.onload = () => main();
 
 let main = () => {
+    leftInput.value = 1;
 
     // main select category 
     converterKeys.forEach(element => {
         addCategory(categorySelect, { value: element, text: converter[element].name })
     });
-
     leftCategory();
     rightCategory(leftSelect.value);
+
+    formulaCal()
 }
 
 // main category added
@@ -190,6 +210,7 @@ let removeAllChild = (parent) => {
         parent.firstChild.remove();
     }
 }
+
 
 // let category added
 let leftCategory = () => {
@@ -214,4 +235,13 @@ let rightCategory = (element) => {
     newData.forEach(element => {
         addCategory(rightSelect, { value: element, text: (converter[categorySelect.value].units)[element] })
     });
+}
+
+let formulaCal = () => {
+    converterName = categorySelect.value
+    variant = converter[converterName].variant;
+    variantKey = `${leftSelect.value}:${rightSelect.value}`
+    formulaTxt = variant[variantKey].formula;
+    formulaTxtArea.innerText = formulaTxt;
+    rightInput.value = variant[variantKey].calculation(leftInput.value);
 }
