@@ -190,6 +190,7 @@ let main = () => {
     converterKeys.forEach(element => {
         addCategory(categorySelect, { value: element, text: converter[element].name })
     });
+
     leftCategory();
     rightCategory(leftSelect.value);
 
@@ -245,3 +246,7 @@ let formulaCal = () => {
     formulaTxtArea.innerText = formulaTxt;
     rightInput.value = variant[variantKey].calculation(leftInput.value);
 }
+
+leftInput.addEventListener('keyup', () => {
+    formulaCal();
+})
